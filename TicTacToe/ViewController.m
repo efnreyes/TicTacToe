@@ -9,6 +9,16 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+@property (strong, nonatomic) IBOutlet UILabel *myLabelOne;
+@property (strong, nonatomic) IBOutlet UILabel *myLabelTwo;
+@property (strong, nonatomic) IBOutlet UILabel *myLabelThree;
+@property (strong, nonatomic) IBOutlet UILabel *myLabelFour;
+@property (strong, nonatomic) IBOutlet UILabel *myLabelFive;
+@property (strong, nonatomic) IBOutlet UILabel *myLabelSix;
+@property (strong, nonatomic) IBOutlet UILabel *myLabelSeven;
+@property (strong, nonatomic) IBOutlet UILabel *myLabelEight;
+@property (strong, nonatomic) IBOutlet UILabel *myLabelNine;
+@property (strong, nonatomic) IBOutlet UILabel *whichPlayerLabel;
 
 @end
 
