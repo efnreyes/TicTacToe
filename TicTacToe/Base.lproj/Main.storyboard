@@ -96,7 +96,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqR-eS-aGq">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tic-Tac-Toe!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqR-eS-aGq">
                                 <rect key="frame" x="36" y="337" width="248" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.19683349502909037" green="0.50513104979706902" blue="0.6785714285714286" alpha="1" colorSpace="calibratedRGB"/>
@@ -108,6 +108,7 @@
                         <gestureRecognizers/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="Adi-fE-Zij" appends="YES" id="JHa-Ur-OfW"/>
+                            <outletCollection property="gestureRecognizers" destination="p9H-3m-M7D" appends="YES" id="ECg-74-wPG"/>
                         </connections>
                     </view>
                     <connections>
@@ -129,6 +130,7 @@
                         <action selector="onLabelTapped:" destination="vXZ-lx-hvc" id="XBp-X7-i24"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="p9H-3m-M7D"/>
             </objects>
         </scene>
     </scenes>

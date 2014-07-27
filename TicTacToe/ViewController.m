@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController () <UIWebViewDelegate>
 @property (strong, nonatomic) IBOutlet UILabel *myLabelOne;
 @property (strong, nonatomic) IBOutlet UILabel *myLabelTwo;
 @property (strong, nonatomic) IBOutlet UILabel *myLabelThree;
@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *myLabelNine;
 @property (strong, nonatomic) IBOutlet UILabel *whichPlayerLabel;
 @property (strong, nonatomic) NSString *lastTurn;
+@property int numberOfMoves;
 @end
 
 @implementation ViewController
@@ -28,6 +29,9 @@
 {
     [super viewDidLoad];
 	self.lastTurn = @"O";
+    self.numberOfMoves = 0;
+    self.whichPlayerLabel.textColor = [UIColor blueColor];
+    self.whichPlayerLabel.text = @"X";
 }
 
 -(UILabel *)findLabelUsingPoint:(CGPoint)point {
@@ -58,8 +62,24 @@
 -(IBAction)onLabelTapped:(UITapGestureRecognizer *)tapGestureRecognizer {
     CGPoint point = [tapGestureRecognizer locationInView:self.view];
     UILabel *labelPressed = [self findLabelUsingPoint:point];
-    [self assignValueToLabel:labelPressed];
-
+    if (labelPressed != nil) {
+        UIAlertView *alertView = [[UIAlertView alloc] init];
+        alertView.delegate = self;
+        NSString *winner;
+        [self assignValueToLabel:labelPressed];
+        winner = [self whoWon];
+        if (![winner isEqualToString:@"NONE"]) {
+            alertView.title = @"Winner!!!";
+            alertView.message = [NSString stringWithFormat:@"The winner is %@", winner];
+            [alertView addButtonWithTitle:@"OK"];
+            [alertView show];
+        } else if (self.numberOfMoves >= 9) {
+            alertView.title = @"Try again";
+            alertView.message = @"Draw game";
+            [alertView addButtonWithTitle:@"OK"];
+            [alertView show];
+        }
+    }
 }
 
 -(BOOL)assignValueToLabel:(UILabel *)labelPressed {
@@ -68,25 +88,41 @@
             labelPressed.textColor = [UIColor blueColor];
             labelPressed.text = @"X";
             self.whichPlayerLabel.textColor = [UIColor redColor];
-            self.whichPlayerLabel.text = @"Now moves O";
+            self.whichPlayerLabel.text = self.lastTurn;
             self.lastTurn = @"X";
         } else {
             labelPressed.textColor = [UIColor redColor];
             labelPressed.text = @"O";
             self.whichPlayerLabel.textColor = [UIColor blueColor];
-            self.whichPlayerLabel.text = @"Now moves X";
+            self.whichPlayerLabel.text = self.lastTurn;
             self.lastTurn = @"O";
         }
+        self.numberOfMoves++;
         return YES;
     } else {
         self.whichPlayerLabel.textColor = [UIColor yellowColor];
         self.whichPlayerLabel.text = @"Position already taken";
         return NO;
     }
-
 }
 
--(BOOL)checkForWinner {
-    return NO;
+-(NSString *)whoWon {
+    NSString *winner = @"NONE";
+
+    return winner;
 }
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    self.myLabelOne.text = @"";
+    self.myLabelTwo.text = @"";
+    self.myLabelThree.text = @"";
+    self.myLabelFour.text = @"";
+    self.myLabelFive.text = @"";
+    self.myLabelSix.text = @"";
+    self.myLabelSeven.text = @"";
+    self.myLabelEight.text = @"";
+    self.myLabelNine.text = @"";
+    self.numberOfMoves = 0;
+}
+
 @end
